@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solução: buscar comida perto · Mesa Comum</title>
+  <meta name="description" content="Veja as doações perto de você, reserve com seu CPF e retire no balcão em até 2 horas.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="" width="28" height="28">
+        <span>Mesa Comum</span>
+      </a>
+
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="solucao.html" aria-current="page">Solução</a></li>
+          <li><a href="comercio.html">Comércios</a></li>
+          <li><a href="impacto.html">Impacto</a></li>
+          <li><a href="equipe.html">Equipe</a></li>
+        </ul>
+      </nav>
+
+      <div class="acessibilidade" role="group" aria-label="Opções de acessibilidade">
+        <button type="button" data-fonte="menor" aria-label="Diminuir o tamanho da fonte">A−</button>
+        <button type="button" data-fonte="maior" aria-label="Aumentar o tamanho da fonte">A+</button>
+        <button type="button" data-contraste aria-pressed="false" aria-label="Alto contraste"><svg class="icone" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 2a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+      </div>
+
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <section class="pagina-topo" aria-labelledby="titulo-pagina">
+      <div class="container">
+        <h1 id="titulo-pagina">Comida de graça perto de você</h1>
+        <p>Padarias, mercados e restaurantes publicam aqui o que sobrou do dia. Escolha um, reserve com seu CPF e retire no balcão com o código.</p>
+      </div>
+    </section>
+
+    <!-- ========== FILTROS ========== -->
+    <section class="container" aria-labelledby="titulo-filtros">
+      <h2 id="titulo-filtros" class="so-leitor">Filtros da busca</h2>
+      <form class="cartao" id="form-filtros">
+        <div class="filtros">
+          <div class="campo">
+            <label for="filtro-bairro">Onde você está</label>
+            <select id="filtro-bairro" name="bairro"></select>
+          </div>
+          <div class="campo">
+            <label for="filtro-raio">Distância máxima</label>
+            <select id="filtro-raio" name="raio">
+              <option value="1">Até 1 km</option>
+              <option value="3" selected>Até 3 km</option>
+              <option value="5">Até 5 km</option>
+              <option value="10">Até 10 km</option>
+            </select>
+          </div>
+        </div>
+        <ul class="regras">
+          <li>1 reserva por CPF por dia</li>
+          <li>Depois de reservar, você tem 2 horas para buscar</li>
+          <li>Não vai? Cancele, sem punição</li>
+          <li>3 vezes sem ir e sem cancelar bloqueia o CPF por 30 dias</li>
+        </ul>
+      </form>
+    </section>
+
+    <!-- ========== LISTA DE DOAÇÕES (preenchida pelo js/solucao.js) ========== -->
+    <section class="secao" aria-labelledby="titulo-lista">
+      <div class="container">
+        <h2 id="titulo-lista">Doações perto de você</h2>
+        <p class="espaco-acima-pequeno" id="resumo-lista" aria-live="polite"></p>
+        <ul class="lista-doacoes" id="lista-doacoes"></ul>
+      </div>
+    </section>
+
+    <!-- ========== CÓDIGO DA RESERVA (aparece depois de reservar) ========== -->
+    <section class="secao secao--cinza oculto" id="area-codigo" aria-labelledby="titulo-codigo" tabindex="-1">
+      <div class="container">
+        <h2 id="titulo-codigo">Sua reserva está feita</h2>
+        <div class="espaco-acima-pequeno" id="codigo-reserva"></div>
+      </div>
+    </section>
+
+    <!-- ========== PERDEU O CÓDIGO ========== -->
+    <section class="secao" id="minha-reserva" aria-labelledby="titulo-minha">
+      <div class="container duas-colunas">
+        <div class="secao__cabeca">
+          <h2 id="titulo-minha">Perdeu o código?</h2>
+          <p>Digite o CPF que você usou e mostramos a sua reserva de hoje. Por aqui você também pode cancelar.</p>
+        </div>
+        <form class="cartao formulario" id="form-minha" novalidate>
+          <div class="campo">
+            <label for="minha-cpf">CPF</label>
+            <input id="minha-cpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" aria-describedby="minha-cpf-erro" required>
+            <p class="campo__erro oculto" id="minha-cpf-erro"></p>
+          </div>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="submit">Ver minha reserva</button>
+          </div>
+          <div id="minha-resultado" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>© 2026 Mesa Comum · Global Solution FIAP · Engenharia de Software · Turma 1ESOR</p>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="solucao.html">Solução</a></li>
+        <li><a href="comercio.html">Comércios</a></li>
+        <li><a href="impacto.html">Impacto</a></li>
+        <li><a href="equipe.html">Equipe</a></li>
+        <li><a href="termos.html">Termos de uso e privacidade</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/solucao.js"></script>
+</body>
+</html>

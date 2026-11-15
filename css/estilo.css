@@ -1,0 +1,636 @@
+/* =============================================================
+   MESA COMUM — estilos do site
+   Organização:
+   1. Variáveis (cores, espaços)       8. Formulários
+   2. Base                             9. Página Solução (lista, código)
+   3. Acessibilidade                  10. Página Comércios (painel)
+   4. Cabeçalho e menu                11. Página Impacto
+   5. Botões e links                  12. Textos longos e equipe
+   6. Estrutura das seções            13. Rodapé
+   7. Página inicial                  14. Responsividade (media queries)
+   ============================================================= */
+
+
+/* ---------- 1. VARIÁVEIS ---------- */
+
+:root {
+  --fundo: #f8f8f6;
+  --superficie: #ffffff;
+  --superficie-2: #efeee9;
+  --tinta: #121212;
+  --tinta-suave: #4d4d4d;
+  --linha: #dcdad3;
+  --verde: #1f6b3a;
+  --verde-escuro: #174f2b;
+  --verde-claro: #e3efe6;
+  --amarelo-claro: #fff4d6;
+  --amarelo-texto: #5c3a00;
+  --vermelho: #a3201a;
+  --vermelho-claro: #fdecea;
+
+  --raio: 20px;
+  --raio-pequeno: 12px;
+  --largura: 1200px;
+
+  --fonte: "Epilogue", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fonte-codigo: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+/* Modo alto contraste (botão no topo da página) */
+body.alto-contraste {
+  --fundo: #000000;
+  --superficie: #000000;
+  --superficie-2: #1a1a1a;
+  --tinta: #ffffff;
+  --tinta-suave: #ffffff;
+  --linha: #ffffff;
+  --verde: #ffd400;
+  --verde-escuro: #ffe866;
+  --verde-claro: #333000;
+  --amarelo-claro: #333000;
+  --amarelo-texto: #ffd400;
+  --vermelho: #ff8a80;
+  --vermelho-claro: #330000;
+}
+body.alto-contraste .botao--principal,
+body.alto-contraste .codigo-card { color: #000000; }
+body.alto-contraste .codigo-card { background: #ffd400; }
+body.alto-contraste .codigo-card .botao--secundario { background: #000000; color: #ffd400; }
+
+
+/* ---------- 2. BASE ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* O tamanho da fonte muda com os botões A- / A+ (classes no <html>) */
+html { font-size: 100%; scroll-behavior: smooth; scroll-padding-top: 6rem; }
+html.fonte-maior { font-size: 112.5%; }
+html.fonte-muito-maior { font-size: 125%; }
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: var(--fundo);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 { line-height: 1.15; margin: 0; font-weight: 500; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.75rem); letter-spacing: -0.035em; }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -0.03em; }
+h3 { font-size: 1.2rem; letter-spacing: -0.01em; }
+p { margin: 0; }
+
+.container { width: min(100% - 3rem, var(--largura)); margin-inline: auto; }
+
+
+/* ---------- 3. ACESSIBILIDADE ---------- */
+
+/* Link "pular para o conteúdo": aparece só quando recebe foco pelo teclado */
+.pular-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--tinta);
+  color: var(--fundo);
+  padding: 0.75rem 1rem;
+  border-radius: var(--raio-pequeno);
+  text-decoration: none;
+  font-weight: 500;
+}
+.pular-link:focus { top: 1rem; }
+
+/* Contorno de foco bem visível em tudo que é clicável */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--verde);
+  outline-offset: 2px;
+}
+
+/* Texto escondido na tela, mas lido por leitor de tela */
+.so-leitor {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.oculto { display: none !important; }
+
+
+/* ---------- 4. CABEÇALHO E MENU ---------- */
+
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--fundo);
+  border-bottom: 1px solid var(--linha);
+}
+
+.topo__barra {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 4.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--tinta);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-right: auto;
+}
+.logo img { width: 28px; height: 28px; }
+
+.menu ul {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  display: block;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  color: var(--tinta);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.menu a:hover { background: var(--superficie-2); }
+.menu a[aria-current="page"] { background: var(--verde-claro); color: var(--verde); }
+
+.acessibilidade { display: flex; gap: 0.25rem; }
+.acessibilidade button {
+  min-width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--tinta);
+  font: 500 0.85rem var(--fonte);
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+}
+.acessibilidade button:hover { border-color: var(--tinta); }
+.acessibilidade button[aria-pressed="true"] { background: var(--tinta); color: var(--fundo); }
+
+.menu-botao {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--tinta);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+/* ---------- 5. BOTÕES E LINKS ---------- */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font: 500 1rem var(--fonte);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.botao:active { transform: translateY(1px); }
+
+.botao--principal { background: var(--verde); color: #ffffff; }
+.botao--principal:hover { background: var(--verde-escuro); }
+
+.botao--secundario { background: var(--superficie-2); color: var(--tinta); }
+.botao--secundario:hover { border-color: var(--tinta); }
+
+.botao--grande { min-height: 3.5rem; padding: 0.8rem 2rem; font-size: 1.15rem; }
+
+.link {
+  color: var(--tinta);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--verde);
+}
+.link:hover { text-decoration-thickness: 2px; }
+
+.botoes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+
+/* ---------- 6. ESTRUTURA DAS SEÇÕES ---------- */
+
+.secao { padding: 5rem 0; }
+.secao--cinza { background: var(--superficie-2); }
+.secao--escura { background: #121212; color: #f8f8f6; }
+
+.secao__cabeca { max-width: 46rem; margin-bottom: 2.5rem; display: grid; gap: 1rem; }
+.secao__cabeca p { font-size: 1.15rem; color: var(--tinta-suave); }
+.secao--escura .secao__cabeca p { color: #d6d6d0; }
+
+.etiqueta {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--verde);
+  background: var(--verde-claro);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  justify-self: start;
+}
+
+.cartao {
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 1.75rem;
+}
+.cartao h3 + p, .cartao h3 + ul { margin-top: 0.6rem; }
+.cartao p + p { margin-top: 0.6rem; }
+
+.grade-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.grade-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.grade-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+
+/* Cabeçalho das páginas internas */
+.pagina-topo { padding: 4rem 0 2.5rem; }
+.pagina-topo .container { display: grid; gap: 1rem; }
+.pagina-topo p { font-size: 1.2rem; max-width: 44rem; }
+
+
+/* ---------- 7. PÁGINA INICIAL ---------- */
+
+.hero { padding: 4.5rem 0 5rem; }
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.hero__texto { display: grid; gap: 1.5rem; }
+.hero__texto > p { font-size: 1.2rem; max-width: 34rem; }
+
+/* Desenho da tela do site no hero */
+.vitrine {
+  background: linear-gradient(145deg, #d9c7a6 0%, #c9a978 45%, #8fa36a 100%);
+  border-radius: 28px;
+  padding: 2rem;
+}
+.tela {
+  background: #ffffff;
+  color: #121212;
+  border-radius: 18px;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+.tela__barra {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ecebe6;
+  color: #5c5c5c;
+  font-size: 0.8rem;
+}
+.tela__barra strong { color: #121212; font-weight: 500; }
+.tela__lista { list-style: none; margin: 0; padding: 0.75rem; display: grid; gap: 0.5rem; }
+.tela__lista li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ecebe6;
+  border-radius: 12px;
+}
+.tela__distancia { color: #1f6b3a; font-weight: 600; }
+.tela__lista small { display: block; color: #5c5c5c; font-size: 0.75rem; }
+.tela__acao {
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: #e3efe6;
+  color: #1f6b3a;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+.tela__codigo {
+  margin: 0 0.75rem 0.75rem;
+  background: #121212;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.25rem;
+}
+.tela__codigo small { color: #c9c9c4; font-size: 0.75rem; }
+.tela__codigo strong { font: 500 1.8rem var(--fonte-codigo); letter-spacing: 0.04em; }
+
+/* Números do problema */
+.numero-grande {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+}
+.fatos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.fatos p { border-top: 1px solid #4a4a4a; padding-top: 1rem; color: #e6e6e0; }
+.fonte-dado { margin-top: 1.5rem; font-size: 0.9rem; color: #c9c9c4; }
+.fonte-dado a { color: #ffffff; }
+
+/* Passos */
+.passo { display: grid; gap: 0.75rem; align-content: start; }
+.passo__numero {
+  width: 2.5rem; height: 2.5rem;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--verde);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ODS */
+.ods { display: grid; gap: 0.75rem; align-content: start; }
+.ods__numero {
+  width: 3.5rem; height: 3.5rem;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.ods--2 .ods__numero { background: #b8862b; }
+.ods--10 .ods__numero { background: #c31f6a; }
+.ods--11 .ods__numero { background: #c96b10; }
+
+/* Perguntas */
+.perguntas { display: grid; gap: 0; }
+.perguntas div { padding: 1.25rem 0; border-bottom: 1px solid var(--linha); }
+.perguntas dt { font-weight: 500; font-size: 1.1rem; }
+.perguntas dd { margin: 0.4rem 0 0; color: var(--tinta-suave); }
+
+/* Chamada final */
+.chamada { text-align: left; display: grid; gap: 1.25rem; justify-items: start; }
+
+
+/* ---------- 8. FORMULÁRIOS ---------- */
+
+.formulario { display: grid; gap: 1.1rem; }
+.formulario__linha { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+
+.campo { display: grid; gap: 0.4rem; }
+.campo label { font-weight: 500; font-size: 0.95rem; }
+.campo input, .campo select {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-pequeno);
+  background: var(--superficie);
+  color: var(--tinta);
+  font: 1rem var(--fonte);
+}
+.campo input[aria-invalid="true"] { border: 2px solid var(--vermelho); }
+.campo__erro { color: var(--vermelho); font-size: 0.9rem; font-weight: 500; }
+.campo__ajuda { color: var(--tinta-suave); font-size: 0.85rem; }
+
+.caixa-check { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.95rem; }
+.caixa-check input { width: 1.25rem; height: 1.25rem; margin-top: 0.2rem; accent-color: var(--verde); flex: none; }
+
+/* Mensagens de erro e de sucesso, na própria página (sem alert) */
+.mensagem { padding: 0.9rem 1.1rem; border-radius: var(--raio-pequeno); font-weight: 500; }
+.mensagem:empty { display: none; }
+.mensagem--erro { background: var(--vermelho-claro); color: var(--vermelho); }
+.mensagem--sucesso { background: var(--verde-claro); color: var(--verde); }
+.mensagem--aviso { background: var(--amarelo-claro); color: var(--amarelo-texto); }
+
+
+/* ---------- 9. PÁGINA SOLUÇÃO ---------- */
+
+.filtros { display: grid; grid-template-columns: 2fr 1fr; gap: 1.1rem; }
+.regras { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 1.25rem; padding: 0; list-style: none; color: var(--tinta-suave); font-size: 0.95rem; }
+.regras li::before { content: "• "; color: var(--verde); font-weight: 700; }
+
+.lista-doacoes { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 0.75rem; }
+
+.doacao {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  gap: 0.25rem 1.25rem;
+  align-items: center;
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+}
+.doacao__distancia {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  height: 4.5rem;
+  border-radius: 16px;
+  background: var(--verde-claro);
+  color: var(--verde);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.doacao__distancia small { display: block; font-weight: 400; font-size: 0.75rem; }
+.doacao__nome { font-weight: 500; font-size: 1.15rem; }
+.doacao__local, .doacao__vagas { color: var(--tinta-suave); font-size: 0.9rem; }
+.doacao__acao { grid-row: span 2; display: grid; justify-items: end; gap: 0.4rem; }
+.doacao__item { grid-column: 2; }
+.doacao__form { grid-column: 1 / -1; border-top: 1px solid var(--linha); margin-top: 1rem; padding-top: 1.25rem; }
+
+.lista-vazia {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  border: 2px dashed var(--linha);
+  border-radius: var(--raio);
+  color: var(--tinta-suave);
+}
+
+/* Cartão com o código de retirada */
+.codigo-card {
+  background: #121212;
+  color: #ffffff;
+  border-radius: var(--raio);
+  padding: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+.codigo-card__rotulo { color: #c9c9c4; font-size: 0.95rem; }
+.codigo-card__codigo { font: 500 clamp(2.75rem, 8vw, 4.5rem)/1 var(--fonte-codigo); letter-spacing: 0.04em; }
+.codigo-card__info { display: grid; gap: 0.3rem; }
+.codigo-card__cancelar { border-top: 1px solid #3a3a3a; padding-top: 1rem; display: grid; gap: 0.75rem; justify-items: start; }
+.codigo-card .botao--secundario { background: #2a2a2a; color: #ffffff; }
+.codigo-card .mensagem--aviso { color: var(--amarelo-texto); }
+
+
+/* ---------- 10. PÁGINA COMÉRCIOS ---------- */
+
+.duas-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+.pilha { display: grid; gap: 1.25rem; }
+
+.indicadores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0; }
+.indicador { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 1.25rem; }
+.indicador dt { color: var(--tinta-suave); font-size: 0.9rem; }
+.indicador dd { margin: 0 0 0.25rem; font-size: 2.2rem; letter-spacing: -0.03em; order: -1; }
+.indicador { display: flex; flex-direction: column; }
+
+.validar { display: grid; grid-template-columns: 1fr auto; gap: 0.75rem; align-items: end; }
+.validar input { font-family: var(--fonte-codigo); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.tabela-rolagem { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-size: 0.85rem; font-weight: 500; color: var(--tinta-suave); padding: 0 0 0.6rem; border-bottom: 1px solid var(--linha); }
+td { padding: 0.75rem 0; border-bottom: 1px solid var(--linha); vertical-align: top; }
+th + th, td + td { padding-left: 1rem; }
+.numero { text-align: right; white-space: nowrap; }
+
+.selo { display: flex; gap: 1.25rem; align-items: center; }
+.selo__disco {
+  flex: none;
+  width: 6rem; height: 6rem;
+  border-radius: 50%;
+  border: 2px dashed var(--linha);
+  display: grid; place-items: center;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--tinta-suave);
+  padding: 0.5rem;
+}
+.selo__disco--ganho { border: none; background: var(--verde); color: #ffffff; }
+
+/* Barras de progresso (selo e ranking): elemento <meter> estilizado */
+meter {
+  width: 100%;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--superficie-2);
+  border: none;
+}
+meter::-webkit-meter-bar { background: var(--superficie-2); border: none; border-radius: 999px; height: 0.6rem; }
+meter::-webkit-meter-optimum-value { background: var(--verde); border-radius: 999px; }
+meter::-moz-meter-bar { background: var(--verde); border-radius: 999px; }
+
+
+/* ---------- 11. PÁGINA IMPACTO ---------- */
+
+.aviso-prototipo {
+  background: var(--verde-claro);
+  border-left: 4px solid var(--verde);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0;
+}
+
+.grafico { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.grafico li { display: grid; grid-template-columns: 3.5rem 1fr 2rem; gap: 0.75rem; align-items: center; font-size: 0.9rem; }
+.grafico li span:last-child { text-align: right; font-weight: 500; }
+
+.ranking { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.ranking li { display: grid; grid-template-columns: 1fr auto; gap: 0.4rem 1rem; }
+.ranking meter { grid-column: 1 / -1; }
+
+
+/* ---------- 12. TEXTOS LONGOS E EQUIPE ---------- */
+
+.texto-longo { max-width: 46rem; }
+.texto-longo h2 { font-size: 1.6rem; margin: 3rem 0 1rem; }
+.texto-longo h2:first-child { margin-top: 0; }
+.texto-longo p + p, .texto-longo p + ul, .texto-longo ul + p { margin-top: 1rem; }
+.texto-longo ul { padding-left: 1.25rem; display: grid; gap: 0.6rem; margin: 0; }
+.texto-longo li::marker { color: var(--verde); }
+.texto-longo a { color: var(--tinta); }
+
+.integrante { display: flex; gap: 1rem; align-items: center; }
+.integrante img { width: 3.5rem; height: 3.5rem; flex: none; }
+.integrante strong { display: block; font-weight: 500; line-height: 1.3; }
+.integrante span { color: var(--tinta-suave); font-size: 0.9rem; }
+
+.lista-simples { margin: 0.6rem 0 0; padding-left: 1.25rem; display: grid; gap: 0.4rem; }
+.lista-simples li::marker { color: var(--verde); }
+
+
+/* ---------- 13. RODAPÉ ---------- */
+
+.rodape { border-top: 1px solid var(--linha); padding: 2.5rem 0; font-size: 0.95rem; color: var(--tinta-suave); }
+.rodape .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+.rodape ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+.rodape a { color: var(--tinta); }
+
+
+/* ---------- 14. RESPONSIVIDADE ---------- */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .grade-4, .indicadores { grid-template-columns: repeat(2, 1fr); }
+  .grade-3 { grid-template-columns: 1fr; }
+  .duas-colunas { grid-template-columns: 1fr; }
+  .fatos { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* Celular: o menu vira uma lista que abre pelo botão ☰ */
+@media (max-width: 860px) {
+  .menu-botao { display: block; }
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--fundo);
+    border-bottom: 1px solid var(--linha);
+    padding: 0.75rem 1.5rem 1.25rem;
+  }
+  .menu.aberto { display: block; }
+  .menu ul { flex-direction: column; }
+  .menu a { padding: 0.9rem 1rem; font-size: 1.05rem; }
+  .topo__barra { gap: 0.75rem; }
+}
+
+@media (max-width: 640px) {
+  .secao { padding: 3.5rem 0; }
+  .container { width: min(100% - 2rem, var(--largura)); }
+  .grade-2, .grade-4, .indicadores, .filtros, .formulario__linha { grid-template-columns: 1fr; }
+  .vitrine { padding: 1rem; border-radius: 20px; }
+  .tela__lista li { grid-template-columns: 3rem 1fr; }
+  .tela__acao { display: none; }
+  .doacao { grid-template-columns: 4rem 1fr; }
+  .doacao__distancia { height: 4rem; font-size: 0.9rem; }
+  .doacao__item { grid-column: 1 / -1; }
+  .doacao__acao { grid-column: 1 / -1; grid-row: auto; justify-items: stretch; order: 1; }
+  .doacao__vagas { order: -1; }
+  .doacao__form { order: 2; }
+  .doacao__acao .botao { width: 100%; }
+  .botoes .botao { width: 100%; }
+  .validar { grid-template-columns: 1fr; }
+  .codigo-card { padding: 1.5rem; }
+  .acessibilidade button { min-width: 2.5rem; }
+  .logo span { font-size: 1.05rem; }
+}
+
+
+/* ---------- 15. AJUSTES PEQUENOS ---------- */
+
+.lista-sem-marcador { list-style: none; margin: 0; padding: 0; }
+.espaco-acima { margin-top: 2rem; }
+.espaco-acima-pequeno { margin-top: 1rem; }

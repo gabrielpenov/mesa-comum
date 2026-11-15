@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comércios: doe o que sobra · Mesa Comum</title>
+  <meta name="description" content="Cadastre seu estabelecimento, publique doações e valide as retiradas no balcão.">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__barra">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="" width="28" height="28">
+        <span>Mesa Comum</span>
+      </a>
+
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="solucao.html">Solução</a></li>
+          <li><a href="comercio.html" aria-current="page">Comércios</a></li>
+          <li><a href="impacto.html">Impacto</a></li>
+          <li><a href="equipe.html">Equipe</a></li>
+        </ul>
+      </nav>
+
+      <div class="acessibilidade" role="group" aria-label="Opções de acessibilidade">
+        <button type="button" data-fonte="menor" aria-label="Diminuir o tamanho da fonte">A−</button>
+        <button type="button" data-fonte="maior" aria-label="Aumentar o tamanho da fonte">A+</button>
+        <button type="button" data-contraste aria-pressed="false" aria-label="Alto contraste"><svg class="icone" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 2a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+      </div>
+
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===================== VISITANTE: texto + cadastro ===================== -->
+    <div id="vista-entrada">
+      <section class="pagina-topo" aria-labelledby="titulo-pagina">
+        <div class="container">
+          <h1 id="titulo-pagina">Transforme o que sobra em impacto social e fortaleça seu negócio</h1>
+          <p>Fazer o bem para a comunidade agora ficou mais simples, seguro e vantajoso para o seu estabelecimento. Ao se cadastrar, você se alinha às diretrizes da Política Nacional de Combate à Perda e ao Desperdício de Alimentos (Lei nº 15.224).</p>
+        </div>
+      </section>
+
+      <section class="secao" aria-labelledby="titulo-beneficios">
+        <div class="container duas-colunas">
+          <div class="pilha">
+            <h2 id="titulo-beneficios">Como funciona na prática para a sua empresa</h2>
+            <article class="cartao">
+              <h3>Respaldo legal para quem doa de boa-fé</h3>
+              <p>A Lei nº 15.224 incentiva a doação de alimentos próprios para consumo e protege o doador que age de boa-fé. Doando dentro da validade e das normas sanitárias, você tem a lei a seu favor.</p>
+            </article>
+            <article class="cartao">
+              <h3>Histórico automático de doações</h3>
+              <p>Cada kit doado gera registros automáticos de volume, data e horário da retirada. Para proteger quem recebe, nenhum nome ou CPF aparece para o estabelecimento, só a retirada confirmada.</p>
+            </article>
+            <article class="cartao">
+              <h3>Caminho para o Selo Doador de Alimentos</h3>
+              <p>Com os relatórios gerados pela plataforma, sua empresa comprova o impacto necessário para pleitear o Selo Doador de Alimentos, um reconhecimento oficial que agrega valor à sua marca.</p>
+            </article>
+            <article class="cartao">
+              <h3>Menos descarte, mais clientes conscientes</h3>
+              <p>Em vez de pagar pelo descarte de lixo orgânico, sua padaria, mercado ou restaurante reduz custos, atrai clientes que valorizam práticas sustentáveis e ajuda a alimentar quem mais precisa.</p>
+            </article>
+          </div>
+
+          <div class="pilha">
+            <form class="cartao formulario" id="form-cadastro" novalidate>
+              <h2>Cadastre seu estabelecimento</h2>
+              <div class="campo">
+                <label for="cad-nome">Nome do estabelecimento</label>
+                <input id="cad-nome" autocomplete="organization" aria-describedby="cad-nome-erro" required>
+                <p class="campo__erro oculto" id="cad-nome-erro"></p>
+              </div>
+              <div class="formulario__linha">
+                <div class="campo">
+                  <label for="cad-tipo">Tipo</label>
+                  <select id="cad-tipo">
+                    <option>Padaria</option>
+                    <option>Mercado</option>
+                    <option>Hortifruti</option>
+                    <option>Restaurante</option>
+                    <option>Lanchonete</option>
+                    <option>Outro</option>
+                  </select>
+                </div>
+                <div class="campo">
+                  <label for="cad-bairro">Bairro</label>
+                  <select id="cad-bairro"></select>
+                </div>
+              </div>
+              <div class="campo">
+                <label for="cad-rua">Rua</label>
+                <input id="cad-rua" autocomplete="address-line1" aria-describedby="cad-rua-erro" required>
+                <p class="campo__erro oculto" id="cad-rua-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="cad-email">Email</label>
+                <input id="cad-email" type="email" autocomplete="email" aria-describedby="cad-email-erro" required>
+                <p class="campo__erro oculto" id="cad-email-erro"></p>
+              </div>
+              <p class="mensagem mensagem--erro" id="cad-mensagem" role="alert"></p>
+              <div class="botoes">
+                <button class="botao botao--principal" type="submit">Cadastrar e abrir o painel</button>
+              </div>
+            </form>
+
+            <form class="cartao formulario" id="form-exemplo">
+              <h2>Só quer ver como fica?</h2>
+              <p>Entre no painel de um dos comércios de exemplo.</p>
+              <div class="campo">
+                <label for="exemplo-comercio">Comércio de exemplo</label>
+                <select id="exemplo-comercio"></select>
+              </div>
+              <div class="botoes">
+                <button class="botao botao--secundario" type="submit">Entrar no painel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================== PAINEL DO COMÉRCIO ===================== -->
+    <div id="vista-painel" class="oculto">
+      <section class="pagina-topo" aria-labelledby="painel-nome">
+        <div class="container">
+          <p class="mensagem mensagem--sucesso" id="painel-boas-vindas" role="status"></p>
+          <h1 id="painel-nome">Painel</h1>
+          <p id="painel-endereco"></p>
+          <div class="botoes">
+            <button class="botao botao--secundario" type="button" id="botao-sair">Sair do painel</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="container" aria-labelledby="titulo-numeros">
+        <h2 id="titulo-numeros" class="so-leitor">Seus números</h2>
+        <dl class="indicadores" id="painel-indicadores"></dl>
+      </section>
+
+      <section class="secao" aria-label="Validar retirada e publicar doação">
+        <div class="container duas-colunas">
+          <form class="cartao formulario" id="form-validar" novalidate>
+            <h2>Validar retirada</h2>
+            <p>Digite o código que a pessoa mostrar no balcão.</p>
+            <div class="validar">
+              <div class="campo">
+                <label for="validar-codigo">Código da pessoa</label>
+                <input id="validar-codigo" autocomplete="off" placeholder="TRI-4821" maxlength="8" required>
+              </div>
+              <button class="botao botao--principal" type="submit">Validar</button>
+            </div>
+            <p class="mensagem" id="validar-mensagem" role="status"></p>
+          </form>
+
+          <form class="cartao formulario" id="form-doacao" novalidate>
+            <h2>Publicar doação de hoje</h2>
+            <div class="campo">
+              <label for="doacao-item">O que você vai doar</label>
+              <input id="doacao-item" placeholder="Ex.: pães do dia, 6 por kit" aria-describedby="doacao-item-erro" required>
+              <p class="campo__erro oculto" id="doacao-item-erro"></p>
+            </div>
+            <div class="formulario__linha">
+              <div class="campo">
+                <label for="doacao-qtd">Quantos kits</label>
+                <input id="doacao-qtd" type="number" inputmode="numeric" min="1" max="100" value="5" aria-describedby="doacao-qtd-erro" required>
+                <p class="campo__erro oculto" id="doacao-qtd-erro"></p>
+              </div>
+              <div class="campo">
+                <label for="doacao-peso">Peso por kit (kg)</label>
+                <input id="doacao-peso" type="number" inputmode="decimal" min="0.1" step="0.1" value="0.5" aria-describedby="doacao-peso-erro" required>
+                <p class="campo__erro oculto" id="doacao-peso-erro"></p>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="doacao-ate">Retirada até (hoje)</label>
+              <input id="doacao-ate" type="time" value="20:00" aria-describedby="doacao-ate-erro" required>
+              <p class="campo__erro oculto" id="doacao-ate-erro"></p>
+            </div>
+            <p class="mensagem" id="doacao-mensagem" role="status"></p>
+            <div class="botoes">
+              <button class="botao botao--principal" type="submit">Publicar doação</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="secao secao--cinza" aria-labelledby="titulo-suas-doacoes">
+        <div class="container">
+          <div class="cartao">
+            <h2 id="titulo-suas-doacoes">Suas doações</h2>
+            <p class="campo__ajuda espaco-acima-pequeno">Se a pessoa não vier em 2 horas, o kit volta a ficar disponível sozinho.</p>
+            <div class="tabela-rolagem espaco-acima-pequeno">
+              <table id="tabela-doacoes"></table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" aria-label="Selo e histórico">
+        <div class="container duas-colunas">
+          <div class="cartao pilha">
+            <h2>Selo Apoiador</h2>
+            <div class="selo" id="painel-selo"></div>
+          </div>
+          <div class="cartao">
+            <h2>Histórico de retiradas</h2>
+            <p class="campo__ajuda espaco-acima-pequeno">Sem nome ou CPF de quem retirou.</p>
+            <div class="tabela-rolagem espaco-acima-pequeno">
+              <table id="tabela-historico"></table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>© 2026 Mesa Comum · Global Solution FIAP · Engenharia de Software · Turma 1ESOR</p>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="solucao.html">Solução</a></li>
+        <li><a href="comercio.html">Comércios</a></li>
+        <li><a href="impacto.html">Impacto</a></li>
+        <li><a href="equipe.html">Equipe</a></li>
+        <li><a href="termos.html">Termos de uso e privacidade</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/comercio.js"></script>
+</body>
+</html>
