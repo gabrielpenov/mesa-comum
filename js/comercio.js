@@ -169,7 +169,7 @@ function desenharPainel(comercio) {
     '<div class="pilha">' +
       '<p><strong>' + (ganhou ? 'Selo Apoiador conquistado' : (faltam === 1 ? 'Falta 1 retirada para o selo' : 'Faltam ' + faltam + ' retiradas para o selo')) + '</strong></p>' +
       '<meter min="0" max="' + meta + '" value="' + Math.min(historico.length, meta) + '" aria-label="Progresso até o selo">' + historico.length + ' de ' + meta + '</meter>' +
-      '<p class="campo__ajuda">Mostre o selo na vitrine e nas redes. O histórico serve de comprovação para pedir o Selo Doador de Alimentos oficial (Lei nº 15.224).</p>' +
+      '<p class="campo__ajuda">Mostre o selo na vitrine e nas redes. O histórico também vai ajudar a comprovar suas doações quando o Selo Doador de Alimentos oficial (Lei nº 15.224) for regulamentado.</p>' +
     '</div>';
 }
 
