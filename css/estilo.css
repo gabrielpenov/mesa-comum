@@ -252,9 +252,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-weight: 500;
   color: var(--verde);
   background: var(--verde-claro);
-  padding: 0.25rem 0.75rem;
+  line-height: 1.2;
+  padding: 0.35rem 0.75rem 0.25rem;
   border-radius: 999px;
   justify-self: start;
+  align-self: start;
+  margin-bottom: 0.25rem;
 }
 
 .cartao {
@@ -486,7 +489,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* ---------- 10. PÁGINA COMÉRCIOS ---------- */
 
 .duas-colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
-.pilha { display: grid; gap: 1.25rem; }
+.pilha { display: grid; gap: 1.25rem; align-content: start; }
+.cartao.pilha { gap: 0.75rem; }
 
 .indicadores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0; }
 .indicador { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 1.25rem; }
