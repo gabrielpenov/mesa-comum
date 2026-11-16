@@ -130,4 +130,4 @@ Usamos o Claude como apoio para:
 
 ## Vídeo pitch
 
-**Link:** _(colocar aqui o link público do YouTube, Drive ou Vimeo)_
+Link: https://youtu.be/n7Wfikc_0lw
